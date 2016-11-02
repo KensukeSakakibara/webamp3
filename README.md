@@ -1,26 +1,18 @@
-# Slim Framework 3 Skeleton Application
+# WEBAMP3
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+This application was built for Composer.
 
 ## Install the Application
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+Run this command from the directory in which you want to install the application.
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+    php composer.phar install
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+You need to set permission for logs directory.
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can also run this command. 
-
-	php composer.phar start
-
-Run this command to run the test suite
-
-	php composer.phar test
+	chmod 777 logs
+	chmod 777 twig/caches
 
 That's it! Now go build something cool.

@@ -1,21 +1,22 @@
 {
-    "name": "slim/slim-skeleton",
-    "description": "A Slim Framework skeleton application for rapid development",
-    "keywords": ["microframework", "rest", "router", "psr7"],
-    "homepage": "http://github.com/slimphp/Slim-Skeleton",
+    "name": "WEBAMP3",
+    "description": "WEBAMP3 is a single page application for playing your music files.",
+    "keywords": ["angularjs", "typescript", "php", "mysql", "slim", "microframework", "rest", "router", "psr7"],
+    "homepage": "http://webamp.me/",
     "license": "MIT",
     "authors": [
         {
-            "name": "Josh Lockhart",
-            "email": "info@joshlockhart.com",
-            "homepage": "http://www.joshlockhart.com/"
+            "name": "Kensuke Sakakibara",
+            "email": "kenpuchit@gmail.com",
+            "homepage": "http://sakakick.com/"
         }
     ],
     "require": {
         "php": ">=5.5.0",
         "slim/slim": "^3.1",
-        "slim/php-view": "^2.0",
-        "monolog/monolog": "^1.17"
+        "slim/twig-view": "^2.1.1",
+        "monolog/monolog": "^1.17",
+        "twbs/bootstrap": "v3.3.7"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0"
@@ -25,9 +26,10 @@
             "Tests\\": "tests/"
         }
     },
-	"scripts": {
+    "scripts": {
+        "post-update-cmd": "ln -s ../../vendor/twbs/bootstrap/dist/ public/vendor/bootstrap",
         "start": "php -S 0.0.0.0:8080 -t public public/index.php",
         "test": "phpunit"
-	}
+    }
 
 }

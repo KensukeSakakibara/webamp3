@@ -1,10 +1,33 @@
 <?php
-// Routes
 
-$app->get('/[{name}]', function ($request, $response, $args) {
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+// 再帰的に.phpを読み込む
+$it = new RecursiveDirectoryIterator(__DIR__ . '/Api');
+$it = new RecursiveIteratorIterator($it);
+$it = new RegexIterator($it, '/\.php\z/');
+foreach ($it as $file) {
+    if ($file->isFile()) {
+        require $file;
+    }
+}
 
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
+$it = new RecursiveDirectoryIterator(__DIR__ . '/App');
+$it = new RecursiveIteratorIterator($it);
+$it = new RegexIterator($it, '/\.php\z/');
+foreach ($it as $file) {
+    if ($file->isFile()) {
+        require $file;
+    }
+}
+
+// Appのルーティング
+$app->group('/app', function(){
+    $this->any('/index/{action:.+}', function ($request, $response, $args) {
+        $action = $args['action']. 'Action';
+        $indexContoller = new \Webamp3\App\Controller\IndexController($this);
+        if (method_exists($indexContoller, $action)) {
+            $indexContoller->$action();
+        } else {
+            throw new \Slim\Exception\NotFoundException($request, $response);
+        }
+    });
 });

@@ -4,9 +4,14 @@
 $container = $app->getContainer();
 
 // view renderer
-$container['renderer'] = function ($c) {
-    $settings = $c->get('settings')['renderer'];
-    return new Slim\Views\PhpRenderer($settings['template_path']);
+$container['view'] = function ($c) {
+    $settings = $c->get('settings');
+    $view = new Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
+
+    // Add extensions
+    $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
+    $view->addExtension(new Twig_Extension_Debug());
+    return $view;
 };
 
 // monolog
