@@ -1,6 +1,6 @@
-# WEBAMP3
+# WEBAMP 3
 
-This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+This application uses the latest Slim 3 with the Twig template renderer.
 
 This application was built for Composer.
 

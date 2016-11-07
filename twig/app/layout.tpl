@@ -8,6 +8,6 @@
         <link href="/css/{{controller}}.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        {{include(template)}}
+        {% block content %}{% endblock %}
     </body>
 </html>

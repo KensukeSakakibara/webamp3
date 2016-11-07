@@ -3,3 +3,6 @@
 /public/vendor/*
 /twig/caches/*
 !.gitkeep
+/src/database.php
+/node_modules/
+

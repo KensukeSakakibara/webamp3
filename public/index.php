@@ -14,7 +14,9 @@ require __DIR__ . '/../vendor/autoload.php';
 session_start();
 
 // Instantiate the app
-$settings = require __DIR__ . '/../src/settings.php';
+$appSettings = require __DIR__ . '/../src/settings.php';
+$dbSettings = require __DIR__ . '/../src/database.php';
+$settings = array('settings' => array_merge($appSettings, $dbSettings));
 
 $app = new \Slim\App($settings);
 

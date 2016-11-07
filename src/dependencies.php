@@ -22,3 +22,14 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
 };
+
+// Service factory for the ORM
+foreach ($container['settings']['db'] as $key => $dbSetting) {
+    $container['db_'. $key] = function ($container) use ($key) {
+        $capsule = new \Illuminate\Database\Capsule\Manager;
+        $capsule->addConnection($container['settings']['db'][$key]);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
+        return $capsule;
+    };
+}
