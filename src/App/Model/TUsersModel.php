@@ -26,4 +26,63 @@ class TUsersModel extends AbstractModel
         $table = new TUsersTable($container);
         parent::__construct($container, $table);
     }
+    
+    /**
+     * ユーザを登録する
+     * 
+     * @return integer 登録したユーザID
+     */
+    public function addUser()
+    {
+        $userData = array(
+            'status'                => 0,
+            'payment_count'         => 0,
+            'storage_payment_count' => 0,
+            'hashed_email'          => '',
+            'email'                 => 'example4@sakakick.com',
+            'password'              => '********',
+            'first_name'            => 'test',
+            'last_name'             => 'taro',
+        );
+        
+        return $this->_table->insert($userData);
+    }
+    
+    /**
+     * ユーザを更新する
+     */
+    public function updateUser()
+    {
+        $userData = array(
+            'status'                => 3,
+            'payment_count'         => 3,
+            'storage_payment_count' => 3,
+            'hashed_email'          => '3333',
+            'email'                 => 'example333@sakakick.com',
+            'password'              => '********33',
+            'first_name'            => 'test3',
+            'last_name'             => 'taro3',
+        );
+        
+        return $this->_table->getMaster()->update(5, $userData);
+    }
+    
+    /**
+     * ユーザを削除する
+     */
+    public function deleteUser()
+    {
+        return $this->_table->delete(7);
+    }
+    
+    /**
+     * ユーザーを条件付きで取得する
+     * 
+     * @return array 取得したデータ1件
+     */
+    public function getDataByEmail()
+    {
+        $email = 'sakakick@gmail.com';
+        return $this->_table->getDataByEmail($email);
+    }
 }

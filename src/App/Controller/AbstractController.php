@@ -38,6 +38,17 @@ abstract class AbstractController
     }
     
     /**
+     * トランザクション用にDBハンドラを取得する
+     * 
+     * @return object DBハンドラ
+     */
+    protected function getDbAdapter()
+    {
+        $dbh = $this->_container->get('db_master')->connection();
+        return $dbh;
+    }
+    
+    /**
      * 画面画面表示
      * 
      * @param string $template テンプレートのパス

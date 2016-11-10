@@ -33,9 +33,26 @@ class IndexController extends AbstractController
     public function indexAction()
     {
         $tUsersModel = new TUsersModel($this->_container);
-        $users = $tUsersModel->getRowById(2);
+        $users = $tUsersModel->getDataByEmail();
+
+        $dbh = $this->getDbAdapter();
+        try {
+            // トランザクション開始
+            $dbh->beginTransaction();
+            
+            $id = $tUsersModel->updateUser();
+            //$id = $tUsersModel->addUser();
+            //$id = $tUsersModel->deleteUser();
+            
+            // トランザクションコミット
+            $dbh->commit();
+            
+        } catch (\Exception $e) {
+            $dbh->rollback();
+            error_log($e->getMessage());
+        }
         
-        $this->_viewData = array('name' => 'suisui!');
+        $this->_viewData = array('users' => $users);
         
         // 画面画面表示
         $this->_render('app/index/index.tpl');
