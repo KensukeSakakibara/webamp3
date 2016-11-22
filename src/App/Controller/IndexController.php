@@ -55,6 +55,6 @@ class IndexController extends AbstractController
         $this->_viewData = array('users' => $users);
         
         // 画面画面表示
-        $this->_render('app/index/index.tpl');
+        $this->_render('app/index/index.twig');
     }
 }
